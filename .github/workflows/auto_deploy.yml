@@ -1,0 +1,16 @@
+name: "Auto Deploy"
+
+on:
+    workflow_dispatch: 
+    schedule:
+        - cron: '0 0 * * *' # Every day at midnight
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Change Readme
+              run: echo " " >> README.md
+            - uses: stefanzweifel/git-auto-commit-action@v5 
